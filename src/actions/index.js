@@ -5,6 +5,7 @@ const API_KEY = '?key=lily1234'
 
 export const FETCH_POSTS = 'fetch_posts';
 export const SEND_POST = 'send_post'
+export const FETCH_POST = 'fetch_post';
 
 export function fetchPosts(){
     const url = `${POST_URL}/posts${API_KEY}`;
@@ -21,6 +22,16 @@ export function sendPost(values, callback){
     .then(()=>{callback()});
     return {
         type: SEND_POST,
+        payload: request
+    }
+}
+
+
+export function fetchPost(id){
+    const url = `${POST_URL}/posts/${id}${API_KEY}`;
+    const request = axios.get(url);
+    return {
+        type: FETCH_POST,
         payload: request
     }
 }

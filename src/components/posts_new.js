@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { sendPost } from '../actions';
+import { Link } from 'react-router-dom';
 
 class PostsNew extends Component{
 
@@ -69,7 +70,8 @@ class PostsNew extends Component{
                     name="content"
                     type="text"
                     component={this.renderTextarea} />
-                <button type="submit" className="btn btn-success">Add</button>             
+                <button type="submit" className="btn btn-success">Add</button> 
+                <Link className="btn btn-info ml-3" to="/">Cancal</Link>          
             </form>    
         );
     }

@@ -6,6 +6,7 @@ const API_KEY = '?key=lily1234'
 export const FETCH_POSTS = 'fetch_posts';
 export const SEND_POST = 'send_post'
 export const FETCH_POST = 'fetch_post';
+export const DELETE_POST = 'delete_post'
 
 export function fetchPosts(){
     const url = `${POST_URL}/posts${API_KEY}`;
@@ -33,5 +34,15 @@ export function fetchPost(id){
     return {
         type: FETCH_POST,
         payload: request
+    }
+}
+
+export function deletePost(id, callback){
+    const url = `${POST_URL}/posts/${id}${API_KEY}`;
+    const request = axios.delete(url)
+    .then(()=>callback());
+    return {
+        type: DELETE_POST,
+        payload: id
     }
 }

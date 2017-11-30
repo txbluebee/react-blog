@@ -4,6 +4,8 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { fetchPosts } from './../actions';
 
+import Header from './header';
+
 class PostsIndex extends Component {
 
     componentDidMount(){
@@ -24,6 +26,7 @@ class PostsIndex extends Component {
         
         return (
             <div>
+                <Header />
                 <div className="d-flex justify-content-end my-3">
                     <Link className="btn btn-outline-dark" to='/posts/new'>Add New Post</Link>
                 </div>    

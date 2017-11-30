@@ -3,6 +3,9 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { sendPost } from '../actions';
 import { Link } from 'react-router-dom';
+import requireAuth from './../hoc/require_auth';
+
+import Header from './header';
 
 class PostsNew extends Component{
 
@@ -54,7 +57,9 @@ class PostsNew extends Component{
         const { handleSubmit } = this.props;
 
         return(
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+            <div>
+							<Header />
+							<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <Field 
                     label="Title"
                     name="title"
@@ -72,7 +77,9 @@ class PostsNew extends Component{
                     component={this.renderTextarea} />
                 <button type="submit" className="btn btn-success">Add</button> 
                 <Link className="btn btn-info ml-3" to="/">Cancal</Link>          
-            </form>    
+            	</form>    
+            </div>
+
         );
     }
 }
@@ -95,5 +102,7 @@ export default reduxForm({
     form: 'PostsNewForm',
     validate
 })(
-    connect(null, { sendPost })(PostsNew)
+		connect(null, { sendPost })
+	(
+		requireAuth(PostsNew))
 );
